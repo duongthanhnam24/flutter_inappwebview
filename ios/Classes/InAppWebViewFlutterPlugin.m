@@ -25,7 +25,7 @@
 #import "flutter_inappwebview_ios-Swift.h"
 #endif
 
-@implementation InAppWebViewFlutterPlugin : NSObject
+@implementation InAppWebViewFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
     [SwiftFlutterPlugin registerWithRegistrar:registrar];
 }
