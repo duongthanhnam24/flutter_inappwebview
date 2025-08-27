@@ -9,7 +9,7 @@ import Foundation
 
 @available(iOS 9.0, *)
 @objcMembers
-public class SafariBrowserOptions: Options<SafariViewController> {
+public class SafariBrowserSettings: ISettings<SafariViewController> {
     
     var entersReaderIfAvailable = false
     var barCollapsingEnabled = false
@@ -17,13 +17,22 @@ public class SafariBrowserOptions: Options<SafariViewController> {
     var preferredBarTintColor: String?
     var preferredControlTintColor: String?
     var presentationStyle = 0 //fullscreen
-    var transitionStyle = 0 //crossDissolve
+    var transitionStyle = 0 //coverVertical
+    var activityButton: [String:Any?]?
+    var eventAttribution: [String:Any?]?
     
     override init(){
         super.init()
     }
     
-    override func getRealOptions(obj: SafariViewController?) -> [String: Any?] {
+    override func parse(settings: [String: Any?]) -> SafariBrowserSettings {
+        let _ = super.parse(settings: settings)
+        activityButton = settings["activityButton"] as? [String : Any?]
+        eventAttribution = settings["eventAttribution"] as? [String : Any?]
+        return self
+    }
+    
+    override func getRealSettings(obj: SafariViewController?) -> [String: Any?] {
         var realOptions: [String: Any?] = toMap()
         if let safariViewController = obj {
             if #available(iOS 11.0, *) {

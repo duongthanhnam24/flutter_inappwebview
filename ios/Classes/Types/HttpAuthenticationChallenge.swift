@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HttpAuthenticationChallenge: NSObject {
+public class HttpAuthenticationChallenge: NSObject {
     var protectionSpace: URLProtectionSpace!
     var previousFailureCount: Int = 0
     var failureResponse: URLResponse?
@@ -26,8 +26,8 @@ class HttpAuthenticationChallenge: NSObject {
         return [
             "protectionSpace": protectionSpace.toMap(),
             "previousFailureCount": previousFailureCount,
-            "iosFailureResponse": failureResponse?.toMap(),
-            "iosError": error?.localizedDescription,
+            "failureResponse": failureResponse?.toMap(),
+            "error": error?.localizedDescription,
             "proposedCredential": proposedCredential?.toMap()
         ]
     }

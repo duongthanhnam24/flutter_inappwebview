@@ -7,9 +7,9 @@
 
 import Foundation
 
-class ContextMenuOptions: Options<NSObject> {
-    
-    var hideDefaultSystemContextMenuItems = false;
+public class ContextMenuSettings: ISettings<NSObject> {
+
+    var hideDefaultSystemContextMenuItems = false
 
     override init(){
         super.init()

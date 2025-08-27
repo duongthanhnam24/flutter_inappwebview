@@ -8,7 +8,7 @@
 import Foundation
 
 @objcMembers
-public class InAppBrowserOptions: Options<InAppBrowserWebViewController> {
+public class InAppBrowserSettings: ISettings<InAppBrowserWebViewController> {
     
     var hidden = false
     var hideToolbarTop = true
@@ -27,18 +27,22 @@ public class InAppBrowserOptions: Options<InAppBrowserWebViewController> {
     var closeButtonColor: String?
     var presentationStyle = 0 //fullscreen
     var transitionStyle = 0 //crossDissolve
+    var hideCloseButton = false
+    var menuButtonColor: String?
     
     override init(){
         super.init()
     }
     
-    override func getRealOptions(obj: InAppBrowserWebViewController?) -> [String: Any?] {
+    override func getRealSettings(obj: InAppBrowserWebViewController?) -> [String: Any?] {
         var realOptions: [String: Any?] = toMap()
         if let inAppBrowserWebViewController = obj {
+            realOptions["hidden"] = inAppBrowserWebViewController.isHidden
             realOptions["hideUrlBar"] = inAppBrowserWebViewController.searchBar.isHidden
             realOptions["hideProgressBar"] = inAppBrowserWebViewController.progressBar.isHidden
             realOptions["closeButtonCaption"] = inAppBrowserWebViewController.closeButton.title
             realOptions["closeButtonColor"] = inAppBrowserWebViewController.closeButton.tintColor?.hexString
+            realOptions["menuButtonColor"] = inAppBrowserWebViewController.menuButton?.tintColor?.hexString
             if let navController = inAppBrowserWebViewController.navigationController {
                 realOptions["hideToolbarTop"] = navController.navigationBar.isHidden
                 realOptions["toolbarTopBackgroundColor"] = navController.navigationBar.backgroundColor?.hexString
