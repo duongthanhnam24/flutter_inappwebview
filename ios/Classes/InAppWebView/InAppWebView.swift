@@ -2831,7 +2831,7 @@ if(window.\(JAVASCRIPT_BRIDGE_NAME)[\(_callHandlerID)] != null) {
         if !isPausedTimers {
             isPausedTimers = true
             let script = "alert();";
-            self.customEvaluateJavaScript(script, completionHandler: nil)
+            self.customevaluateJavaScript(script, completionHandler: nil)
         }
     }
     
@@ -3108,3 +3108,4 @@ class DecisionHandlerCrashAvoider {
         deinitialize()
     }
 }
+
